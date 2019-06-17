@@ -2,6 +2,7 @@ package com.starwars.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 /**
  * @author Aryaovalldo Cleef
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
+@EntityScan(basePackages = { "com.phoebus.starwars.model" })
 public class StarwarsResistenceApplication {
 
 	public static void main(String[] args) {
