@@ -28,7 +28,8 @@ Item | Pontos
 1 Água | 2 Pontos
 1 Comida | 1 Pontos
 
-Os itens que não contém nesta lista são cadastrados automaticamente como **`Lixo`** com sua quantidade e seus pontos zerados.<br/>
+Os itens que não contém nesta lista ou estão escritos de forma diferente são cadastrados automaticamente como **`Lixo`** com sua quantidade e seus pontos zerados.<br/>
+**OBS**: Seus itens devem ser declarados quando o rebelde se cadastradar no sistema. Após isso seu inventário só poderá mudar através de negociação com outros rebeldes.<br/>
 
 Método **POST**: localhost:8080/rebelde
 ```json

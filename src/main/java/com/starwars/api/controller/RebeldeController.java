@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.starwars.api.model.Rebelde;
+import com.starwars.api.model.Trade;
 import com.starwars.api.service.RebeldeServiceImpl;
 
 /**
@@ -19,7 +20,7 @@ import com.starwars.api.service.RebeldeServiceImpl;
  */
 
 @RestController
-@RequestMapping(value = "/rebelde")
+@RequestMapping(value = "/rebelde", produces = "application/json")
 public class RebeldeController {
 
 	/*
@@ -44,5 +45,13 @@ public class RebeldeController {
 	@GetMapping
 	public Rebelde getById(@RequestParam("id") long id) {
 		return rebService.findById(id);
+	}
+
+	/*
+	 * Realizando trade entre rebeldes
+	 */
+	@PostMapping("/trade")
+	public void realizarTrade(@RequestBody Trade[] trade) {
+		rebService.realizarTrade(trade[0], trade[1]);
 	}
 }
