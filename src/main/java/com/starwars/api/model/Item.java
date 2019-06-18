@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.annotations.ColumnDefault;
 
 /**
  * @author Aryaovalldo Cleef
@@ -33,13 +36,16 @@ public class Item implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "ITE_NOME")
+	@NotEmpty
+	@Column(name = "ITE_NOME", nullable = false)
 	private String nome;
 
 	@Column(name = "ITE_QUANTIDADE")
+	@ColumnDefault("0")
 	private int qtd;
 
-	@Column(name = "ITE_PONTOS")
+	// Os pontos serão calculados pelo service
+	@Column(name = "ITE_PONTOS",  nullable = true)
 	private int pontos;
 
 	/**

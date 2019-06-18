@@ -12,4 +12,8 @@ import com.starwars.api.model.Rebelde;
 
 public interface IRebeldeRepository extends JpaRepository<Rebelde, Long> {
 	
+	/*
+	 * Método para buscar rebelde por id
+	 */
+	Rebelde findById(long id);
 }

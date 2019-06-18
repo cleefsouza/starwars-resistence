@@ -9,8 +9,13 @@ import com.starwars.api.model.Rebelde;
 
 public interface IRebeldeService {
 
-	/* 
+	/*
 	 * Save Rebelde
 	 */
 	void save(Rebelde rebelde);
+
+	/*
+	 * Buscar Rebelde por id
+	 */
+	Rebelde findById(long id);
 }

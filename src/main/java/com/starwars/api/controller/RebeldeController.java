@@ -3,9 +3,11 @@ package com.starwars.api.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.starwars.api.model.Rebelde;
@@ -32,5 +34,15 @@ public class RebeldeController {
 	@PostMapping
 	public void save(@Valid @RequestBody Rebelde rebelde) {
 		rebService.save(rebelde);
+	}
+
+	/**
+	 * Exibindo informações do Rebelde
+	 * 
+	 * @param id
+	 */
+	@GetMapping
+	public Rebelde getById(@RequestParam("id") long id) {
+		return rebService.findById(id);
 	}
 }
