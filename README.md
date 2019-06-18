@@ -9,10 +9,10 @@ API REST com Java e Spring Boot, processo seletivo **Phoebus Tecnologia**.
 - Maven
 
 **Recomendações**
-- Localhost
+- Localhost<br/>
 A API roda na porta 8080, caso ela esteja ocupada, basta entrar no arquivo `application.properties` nas pasta resources e atribuir um novo valor na linha que contem `server.port=NOVO VALOR` 
 
-- Postman
+- Postman<br/>
 Testa serviços RESTful (Web APIs) por meio do envio de requisições HTTP
 
 ## Endpoints
