@@ -28,9 +28,8 @@ Item | Pontos
 1 Água | 2 Pontos
 1 Comida | 1 Pontos
 
-Os itens que não contém nesta lista são cadastrados automaticamente como "Lixo" com sua quantidade e seus pontos zerados.
+Os itens que não contém nesta lista são cadastrados automaticamente como **`Lixo`** com sua quantidade e seus pontos zerados.<br/>
 
-**URL**<br/>
 Método **POST**: localhost:8080/rebelde
 ```json
 {
@@ -66,10 +65,8 @@ Método **POST**: localhost:8080/rebelde
 ```
 
 - **Atualizar localização do rebelde**<br/>
-Um rebelde possuir a capacidade de reportar sua última localização, armazenando a nova latitude, longitude, galaxia.
-
-**URL**
-Na URL é passado o **`id`** do rebelde como seu identificador.<br/>
+Um rebelde possuir a capacidade de reportar sua última localização, armazenando a nova latitude, longitude, galaxia.<br/>
+Na URL é passado o **`id`** do rebelde como seu identificador.<br/><br/>
 Método **PUT**: localhost:8080/localizacao/reportar/**`id`**
 ```json
 {
@@ -80,9 +77,7 @@ Método **PUT**: localhost:8080/localizacao/reportar/**`id`**
 ```
 
 - **Buscar rebelde**<br/>
-Retorna todas as informações referentes a um rebelde especifico.
-
-**URL**<br/>
+Retorna todas as informações referentes a um rebelde especifico.<br/><br/>
 Na URL é passado como parâmetro  o número correspondente ao **`id`** do rebelde.<br/>
 Método **GET**: localhost:8080/rebelde?id=**`id`**
 ```json
