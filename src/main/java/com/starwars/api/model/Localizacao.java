@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * @author Aryaovalldo Cleef
@@ -28,6 +30,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TB_LOCALIZACAO")
+/*
+ * Utilizando named query para realizar comandos personalizados no banco de
+ * dados
+ */
+@NamedQuery(name = "Localizacao.update", query = "UPDATE Localizacao l SET l.latitude=?1, l.longitude=?2, l.galaxia=?3 WHERE l.id=(SELECT r.localizacao.id FROM Rebelde r WHERE r.id=?4)")
 public class Localizacao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -36,13 +43,16 @@ public class Localizacao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@NotEmpty
 	@Column(name = "LOC_LATITUDE", nullable = false)
 	private String latitude;
 
+	@NotEmpty
 	@Column(name = "LOC_LONGITUDE", nullable = false)
 	private String longitude;
 
 	// Apenas o nome da galaxia
+	@NotEmpty
 	@Column(name = "LOC_GALAXIA", nullable = false)
 	private String galaxia;
 

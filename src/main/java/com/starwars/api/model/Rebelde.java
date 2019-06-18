@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -38,12 +39,14 @@ public class Rebelde implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@NotEmpty
 	@Column(name = "REB_NOME", nullable = false)
 	private String nome;
 
 	@Column(name = "REB_IDADE", nullable = false)
 	private int idade;
 
+	@NotEmpty
 	@Column(name = "REB_GENERO", nullable = false)
 	private char genero;
 

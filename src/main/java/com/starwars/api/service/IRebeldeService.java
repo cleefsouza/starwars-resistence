@@ -9,7 +9,8 @@ import com.starwars.api.model.Rebelde;
 
 public interface IRebeldeService {
 
-	// Save Rebelde
+	/* 
+	 * Save Rebelde
+	 */
 	void save(Rebelde rebelde);
-
 }

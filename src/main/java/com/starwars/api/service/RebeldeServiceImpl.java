@@ -27,6 +27,6 @@ public class RebeldeServiceImpl implements IRebeldeService{
 
 	@Override
 	public void save(Rebelde rebelde) {		
-		rebRepository.save(rebelde);		
+		rebRepository.save(rebelde);
 	}
 }
