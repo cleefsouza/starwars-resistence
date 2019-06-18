@@ -46,14 +46,32 @@ public class Rebelde implements Serializable {
 	@Column(name = "REB_IDADE", nullable = false)
 	private int idade;
 
-	@NotEmpty
 	@Column(name = "REB_GENERO", nullable = false)
 	private char genero;
 
 	@OneToOne
 	@Cascade(CascadeType.PERSIST)
-	@JoinColumn(name = "REB_ID_LOCALIZACAO")
+	@JoinColumn(name = "REB_ID_LOCALIZACAO", nullable = false)
 	private Localizacao localizacao;
+	
+	@OneToOne
+	@Cascade(CascadeType.PERSIST)
+	@JoinColumn(name = "REB_ID_INVENTARIO", nullable = false)
+	private Inventario inventario;
+
+	/**
+	 * @return the inventario
+	 */
+	public Inventario getInventario() {
+		return inventario;
+	}
+
+	/**
+	 * @param inventario the inventario to set
+	 */
+	public void setInventario(Inventario inventario) {
+		this.inventario = inventario;
+	}
 
 	/**
 	 * @return the id
