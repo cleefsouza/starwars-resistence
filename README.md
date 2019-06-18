@@ -17,8 +17,8 @@ Testa serviços RESTful (Web APIs) por meio do envio de requisições HTTP
 
 ## Endpoints
 
-- **Adicionar rebelde**
-Um rebelde é adicionado juntamente com sua localização e seu inventário.
+- **Adicionar rebelde**<br/>
+Um rebelde é adicionado juntamente com sua localização e seu inventário.<br/>
 Cada item do inventário tem uma pontuação fixa, a qual é multiplicada automaticamente pela quantidade do mesmo item. Segue a lista de itens disponíveis:
 
 Item | Pontos
@@ -30,60 +30,60 @@ Item | Pontos
 
 Os itens que não contém nesta lista são cadastrados automaticamente como "Lixo" com sua quantidade e seus pontos zerados.
 
-**URL**
+**URL**<br/>
 Método **POST**: localhost:8080/rebelde
 ```json
 {
-	"nome" : "Rebelde Z",
-	"idade" : 28,
-	"genero" : "F",
-	"localizacao" : {
-		"latitude" : "-7.1185908",
-		"longitude" : "-30.8406991",
-		"galaxia" : "Brasil"
-	},
-	"inventario" : {
-		"itens" : [
-			{
-				"nome" : "Arma",
-				"qtd" : 1
-			},
-			{
-				"nome" : "Munição",
-				"qtd" : 2
-			},
-			{
-				"nome" : "Água",
-				"qtd" : 5
-			},
-			{
-				"nome" : "Comida",
-				"qtd" : 3
-			}
-		]	
-	}
+    "nome" : "Rebelde Z",
+    "idade" : 28,
+    "genero" : "F",
+    "localizacao" : {
+        "latitude" : "-7.1185908",
+        "longitude" : "-30.8406991",
+        "galaxia" : "Brasil"
+    },
+    "inventario" : {
+        "itens" : [
+            {
+                "nome" : "Arma",
+                "qtd" : 1
+            },
+            {
+                "nome" : "Munição",
+                "qtd" : 2
+            },
+            {
+                "nome" : "Água",
+                "qtd" : 5
+            },
+            {
+                "nome" : "Comida",
+                "qtd" : 3
+            }
+        ]	
+    }
 }
 ```
 
-- **Atualizar localização do rebelde**
+- **Atualizar localização do rebelde**<br/>
 Um rebelde possuir a capacidade de reportar sua última localização, armazenando a nova latitude, longitude, galaxia.
 
 **URL**
-Na URL é passado o **`id`** do rebelde como seu identificador .
+Na URL é passado o **`id`** do rebelde como seu identificador.<br/>
 Método **PUT**: localhost:8080/localizacao/reportar/**`id`**
 ```json
 {
-	"latitude" : "-6.45678",
-	"longitude" : "-34.12348",
-	"galaxia" : "Brasil"
+    "latitude" : "-6.45678",
+    "longitude" : "-34.12348",
+    "galaxia" : "Brasil"
 }
 ```
 
-- **Buscar rebelde**
+- **Buscar rebelde**<br/>
 Retorna todas as informações referentes a um rebelde especifico.
 
-**URL**
-Na URL é passado como parâmetro  o número correspondente ao **`id`** do rebelde.
+**URL**<br/>
+Na URL é passado como parâmetro  o número correspondente ao **`id`** do rebelde.<br/>
 Método **GET**: localhost:8080/rebelde?id=**`id`**
 ```json
 {
