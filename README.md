@@ -180,12 +180,12 @@ Método **GET**: localhost:8080/rebelde/all
         "genero": "M",
         "traidor": false,
         "localizacao": {
-            //...
+            "..."
         },
         "inventario": {
             "id": 9,
             "itens": [
-                //...
+                "..."
             ]
         }
     },
@@ -196,12 +196,12 @@ Método **GET**: localhost:8080/rebelde/all
         "genero": "M",
         "traidor": true,
         "localizacao": {
-           //...
+           "..."
         },
         "inventario": {
             "id": 16,
             "itens": [
-               //...
+               "..."
             ]
         }
     }
