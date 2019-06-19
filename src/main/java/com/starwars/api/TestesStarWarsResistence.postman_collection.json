@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "fbb21cb5-93f0-4127-90ee-44fb2f5ca510",
+		"name": "Testes Star Wars Resistence",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/localizacao/reportar/1",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"latitude\" : \"-60.45678\",\n\t\"longitude\" : \"-120.12348\",\n\t\"galaxia\" : \"Barnard\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/localizacao/reportar/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"localizacao",
+						"reportar",
+						"1"
+					]
+				},
+				"description": "Reportar nova localização do rebelde"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/rebelde",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\" : \"Rebelde Z\",\n\t\"idade\" : 21,\n\t\"genero\" : \"M\",\n\t\"traidor\" : false,\n\t\"localizacao\" : {\n\t\t\"latitude\" : \"-3.1185908\",\n\t\t\"longitude\" : \"-17.8406991\",\n\t\t\"galaxia\" : \"Barnard\"\n\t},\n\t\"inventario\" : {\n\t\t\"itens\" : [\n\t\t\t{\n\t\t\t\t\"nome\" : \"Arma\",\n\t\t\t\t\"qtd\" : 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"nome\" : \"Munição\",\n\t\t\t\t\"qtd\" : 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"nome\" : \"Água\",\n\t\t\t\t\"qtd\" : 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"nome\" : \"Comida\",\n\t\t\t\t\"qtd\" : 2\n\t\t\t}\n\t\t]\t\n\t}\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/rebelde",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebelde"
+					]
+				},
+				"description": "Cadastrar novo rebelde"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/rebelde?id=15",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/rebelde?id=15",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebelde"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "15"
+						}
+					]
+				},
+				"description": "Buscar rebelde pelo id"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/rebelde/trade",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"idRebelde\" : 1,\n\t\t\"itens\" : [\n\t\t\t{\n\t\t\t\t\"nome\": \"Comida\",\n\t\t\t\t\"qtd\": 2\n\t\t\t}\n\t\t]\n\t},\n\t{\n\t\t\"idRebelde\" : 15,\n\t\t\"itens\" : [\n\t\t\t{\n\t\t\t\t\"nome\": \"Água\",\n\t\t\t\t\"qtd\": 1\n\t\t\t}\n\t\t]\n\t}\n]"
+				},
+				"url": {
+					"raw": "localhost:8080/rebelde/trade",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebelde",
+						"trade"
+					]
+				},
+				"description": "Realizar trade de itens entre rebeldes"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/rebelde/all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/rebelde/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebelde",
+						"all"
+					]
+				},
+				"description": "Listar todos os rebeldes e traidores"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/reporte",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"idAcusado\" : 15\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/reporte",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"reporte"
+					]
+				},
+				"description": "Reportar traidor"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/relatorio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/relatorio",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"relatorio"
+					]
+				},
+				"description": "Exibir simples relatório"
+			},
+			"response": []
+		}
+	]
+}

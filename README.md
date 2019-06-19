@@ -5,14 +5,14 @@ API REST com Java e Spring Boot, processo seletivo **Phoebus Tecnologia**.
 *"O império continua sua luta incessante de dominar a galáxia, tentando ao máximo expandir seu território e eliminar os rebeldes. Você, como um soldado da resistência, foi designado para desenvolver um sistema para compartilhar recursos entre o rebeldes."*
 
 ## Requisitos
-- IDE Eclipse, Netbeans e Afins
+- IDE Eclipse (**Utilizada**), Netbeans e Afins
 - Maven
 
 **Recomendações**
 - Localhost<br/>
 A API roda na porta 8080, caso ela esteja ocupada, basta entrar no arquivo `application.properties` nas pasta resources e atribuir um novo valor na linha que contem `server.port=NOVO VALOR` 
 
-- Postman<br/>
+- Postman (**Utilizado**)<br/>
 Testa serviços RESTful (Web APIs) por meio do envio de requisições HTTP
 
 ## Endpoints
@@ -41,7 +41,7 @@ Método **POST**: localhost:8080/rebelde
     "localizacao" : {
         "latitude" : "-7.1185908",
         "longitude" : "-30.8406991",
-        "galaxia" : "Brasil"
+        "galaxia" : "Via Láctea"
     },
     "inventario" : {
         "itens" : [
@@ -74,7 +74,7 @@ Método **PUT**: localhost:8080/localizacao/reportar/**`id`**
 {
     "latitude" : "-6.45678",
     "longitude" : "-34.12348",
-    "galaxia" : "Brasil"
+    "galaxia" : "Via Láctea"
 }
 ```
 
@@ -93,7 +93,7 @@ Método **GET**: localhost:8080/rebelde?id=**`id`**
         "id": 14,
         "latitude": "-6.45678",
         "longitude": "-34.12348",
-        "galaxia": "Brasil"
+        "galaxia": "Via Láctea"
     },
     "inventario": {
         "id": 1,
@@ -206,4 +206,14 @@ Método **GET**: localhost:8080/rebelde/all
         }
     }
 ]
+```
+
+- **Relatório**<br/>
+Retorna um simples relatório com algumas informações da resistencia<br/><br/>
+Método **GET**: localhost:8080/relatorio
+```json
+{
+    "porcentagemTraidores": 0,
+    "porcentagemRebeldes": 0.01
+}
 ```

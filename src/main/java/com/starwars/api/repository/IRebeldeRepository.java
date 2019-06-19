@@ -3,10 +3,9 @@ package com.starwars.api.repository;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.starwars.api.model.Rebelde;
 
@@ -30,7 +29,20 @@ public interface IRebeldeRepository extends JpaRepository<Rebelde, Long> {
 	/*
 	 * Confirmando rebelde como traidor
 	 */
-	@Transactional
+	@Transactional(readOnly = false)
 	@Modifying
 	void confirmarTraicao(long idRebelde);
+	
+	
+	/*
+	 * Métodos usados no relátorio da api
+	 */
+	
+	// Retorna o total de traidores
+	@Transactional(readOnly = true)
+	int totalTraidores(boolean situacao);
+	
+	// Retorna o total de rebeldes fieis
+	@Transactional(readOnly = true)
+	int totalRebeldes();
 }
