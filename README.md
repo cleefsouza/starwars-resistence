@@ -13,7 +13,8 @@ API REST com Java e Spring Boot, processo seletivo **Phoebus Tecnologia**.
 A API roda na porta 8080, caso ela esteja ocupada, basta entrar no arquivo `application.properties` nas pasta resources e atribuir um novo valor na linha que contem `server.port=NOVO VALOR` 
 
 - Postman (**Utilizado**)<br/>
-Testa serviços RESTful (Web APIs) por meio do envio de requisições HTTP
+Testa serviços RESTful (Web APIs) por meio do envio de requisições HTTP<br/>
+Arquivo: **[TestesStarWarsResistence.postman_collection.json](https://github.com/cleefsouza/starwars-resistence/blob/master/src/main/java/com/starwars/api/TestesStarWarsResistence.postman_collection.json)**
 
 ## Endpoints
 
