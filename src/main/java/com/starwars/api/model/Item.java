@@ -45,8 +45,25 @@ public class Item implements Serializable {
 	private int qtd;
 
 	// Os pontos serão calculados pelo service
-	@Column(name = "ITE_PONTOS",  nullable = true)
+	@Column(name = "ITE_PONTOS", nullable = true)
 	private int pontos;
+
+	/*
+	 * Verificando pontuação por nome do item, caso o item não seja válido o mesmo
+	 * será cadastrado como "Lixo"
+	 */
+	public void adicionarPontos() {
+
+		if (this.nome.equalsIgnoreCase("Arma")) {
+			this.pontos = 4;
+		} else if (this.nome.equalsIgnoreCase("Munição")) {
+			this.pontos = 3;
+		} else if (this.nome.equalsIgnoreCase("Água")) {
+			this.pontos = 2;
+		} else if (this.nome.equalsIgnoreCase("Comida")) {
+			this.pontos = 1;
+		}
+	}
 
 	/**
 	 * @return the pontos

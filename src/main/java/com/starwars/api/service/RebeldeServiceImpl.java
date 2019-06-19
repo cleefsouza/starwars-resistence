@@ -37,28 +37,10 @@ public class RebeldeServiceImpl implements IRebeldeService {
 	public void save(Rebelde rebelde) {
 		List<Item> itens = rebelde.getInventario().getItens();
 
-		// Multiplicando os pontos dos itens pela quantidade do mesmo
-		for (int i = 0; i < itens.size(); i++) {
-			/*
-			 * Verificando pontuação por nome do item, caso o item não seja válido o mesmo
-			 * será cadastrado como "Lixo"
-			 */
-			if (itens.get(i).getNome().equalsIgnoreCase("Arma")) {
-				itens.get(i).setPontos(4 * itens.get(i).getQtd());
-			} else if (itens.get(i).getNome().equalsIgnoreCase("Munição")) {
-				itens.get(i).setPontos(3 * itens.get(i).getQtd());
-			} else if (itens.get(i).getNome().equalsIgnoreCase("Água")) {
-				itens.get(i).setPontos(2 * itens.get(i).getQtd());
-			} else if (itens.get(i).getNome().equalsIgnoreCase("Comida")) {
-				itens.get(i).setPontos(itens.get(i).getQtd());
-			} else {
-				itens.get(i).setNome("Lixo");
-				itens.get(i).setPontos(0);
-				itens.get(i).setQtd(0);
-			}
-		}
-
 		// Nova lista de itens com pontuação atualizada
+		for (int i = 0; i < itens.size(); i++) {
+			itens.get(i).adicionarPontos();
+		}
 		rebelde.getInventario().setItens(itens);
 
 		// Salvando Rebelde
@@ -85,15 +67,48 @@ public class RebeldeServiceImpl implements IRebeldeService {
 
 		// Validando itens para o trade
 
-		rOfertante.getInventario().setItens(validarItens(rOfertante.getInventario().getItens(), ofertante.getItens()));
-		rReceptor.getInventario().setItens(validarItens(rReceptor.getInventario().getItens(), receptor.getItens()));
+		List<Item> itensTradeOfertante = validarItens(rOfertante.getInventario().getItens(), ofertante.getItens());
+		List<Item> itensTradeReceptor = validarItens(rReceptor.getInventario().getItens(), receptor.getItens());
 
-		if (rOfertante.getInventario().getItens().isEmpty() || rReceptor.getInventario().getItens().isEmpty()) {
-			System.err.println("TRADE CANCELADO");
+		/*
+		 * Se a lista de itens for inválida cancela o trade
+		 */
+		if (itensTradeOfertante.isEmpty() || itensTradeReceptor.isEmpty()) {
 			return;
 		} else {
-			System.out.println("TRADE EM ANDAMENTO");
+			/*
+			 * Se a pontuação dos itens for inválida cancela o trade
+			 */
+			if (!validarPontos(itensTradeOfertante, itensTradeReceptor)) {
+				return;
+			} else {
+				/*
+				 * Atualizando itens do inventário do ofertante e removendo do inventário do
+				 * receptor
+				 */
 
+				rOfertante.getInventario()
+						.setItens(adicionarItens(rOfertante.getInventario().getItens(), itensTradeReceptor));
+
+				rOfertante.getInventario()
+						.setItens(removerItens(rOfertante.getInventario().getItens(), itensTradeOfertante));
+
+				/*
+				 * Atualizando itens do inventário do receptor e removendo do inventário do
+				 * ofertante
+				 */
+				rReceptor.getInventario()
+						.setItens(adicionarItens(rReceptor.getInventario().getItens(), itensTradeOfertante));
+
+				rReceptor.getInventario()
+						.setItens(removerItens(rReceptor.getInventario().getItens(), itensTradeReceptor));
+
+				/*
+				 * Salvando modificações
+				 */
+				rebRepository.save(rOfertante);
+				rebRepository.save(rReceptor);
+			}
 		}
 	}
 
@@ -127,7 +142,9 @@ public class RebeldeServiceImpl implements IRebeldeService {
 						/*
 						 * Adicionando itens atualizados
 						 */
-						Item item = ofertante.get(i);
+						Item item = oferta.get(j);
+						item.setId(ofertante.get(i).getId());
+						item.adicionarPontos();
 						itensProntos.add(item);
 					}
 				} else {
@@ -144,12 +161,69 @@ public class RebeldeServiceImpl implements IRebeldeService {
 		 * Verificando se número total de itens continua o mesmo, caso contrario o trade
 		 * se tornará inválido
 		 */
-
 		if (itensProntos.size() < oferta.size()) {
 			return itensProntos = new ArrayList<>();
 		}
 
 		// Retornará true se for válido
 		return itensProntos;
+	}
+
+	/*
+	 * Método que verifica se a soma total do pontos é equivalente
+	 */
+	@Override
+	public boolean validarPontos(List<Item> ofertante, List<Item> receptor) {
+
+		// Recebe a pontuação para verificação
+		int pontosOfertante = 0, pontosReceptor = 0;
+
+		/*
+		 * Somando pontuação
+		 */
+		for (Item it : ofertante) {
+			pontosOfertante += (it.getPontos() * it.getQtd());
+		}
+		for (Item it : receptor) {
+			pontosReceptor += (it.getPontos() * it.getQtd());
+		}
+
+		// Validando pontuação
+		if (pontosOfertante != pontosReceptor)
+			return false;
+
+		return true;
+	}
+
+	/*
+	 * Retorna uma lista contendo os novos itens a serem adicionados ao rebelde
+	 */
+	@Override
+	public List<Item> adicionarItens(List<Item> ofertante, List<Item> oferta) {
+		for (int i = 0; i < ofertante.size(); i++) {
+			for (int j = 0; j < oferta.size(); j++) {
+				if (ofertante.get(i).getNome().equals(oferta.get(j).getNome())) {
+					// Adicionando itens ao ofertante
+					ofertante.get(i).setQtd(ofertante.get(i).getQtd() + oferta.get(j).getQtd());
+				}
+			}
+		}
+		return ofertante;
+	}
+
+	/*
+	 * Retorna uma lista contendo os itens a serem removidos do rebelde
+	 */
+	@Override
+	public List<Item> removerItens(List<Item> ofertante, List<Item> oferta) {
+		for (int i = 0; i < ofertante.size(); i++) {
+			for (int j = 0; j < oferta.size(); j++) {
+				if (ofertante.get(i).getId() == oferta.get(j).getId()) {
+					// Adicionando itens ao ofertante
+					ofertante.get(i).setQtd(ofertante.get(i).getQtd() - oferta.get(j).getQtd());
+				}
+			}
+		}
+		return ofertante;
 	}
 }
