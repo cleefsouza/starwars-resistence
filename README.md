@@ -128,7 +128,7 @@ Método **GET**: localhost:8080/rebelde?id=**`id`**
 ```
 
 - **Negociar itens**<br/>
-Os rebeldes poderão negociar itens entre eles. Para isso, eles devem respeitar a tabela de preços citada acima, onde o valor do item é descrito em termo de pontos.<br/>Ambos os lados deverão oferecer a mesma quantidade de pontos. Por exemplo, 1 munição e 1 comida (1 x 3 + 1 x 1) valem 2 águas (2 x 2) ou 4 comidas (4 x 1).<br/><br/>
+Os rebeldes poderão negociar itens entre eles. Para isso, eles devem respeitar a tabela de preços citada acima, onde o valor do item é descrito em termo de pontos.<br/>Ambos os lados deverão oferecer a mesma quantidade de pontos. Por exemplo, `1 munição` e `1 comida` (1 x 3 + 1 x 1) valem `2 águas` (2 x 2) ou `4 comidas` (4 x 1).<br/><br/>
 Caso os *nomes dos itens estejam diferente da tebela de preços*, a *quantidade de itens seja maior que o inventário do rebelde* ou *a pontuação não bata* o trade será **CANCELADO**<br/><br/>
 **OBS**: A negociação em si não será armazenada, mas os itens deverão ser transferidos de um rebelde a outro.<br/>
 Método **POST**: localhost:8080/rebelde/trade
@@ -155,6 +155,55 @@ Método **POST**: localhost:8080/rebelde/trade
                 "qtd": 2
             }
         ]
+    }
+]
+```
+
+- **Reportar o rebelde como um traidor**<br/>
+Um rebelde é marcado como **traidor** quando, ao menos, **três** outros rebeldes reportarem a traição.<br/>Uma vez marcado como traidor, os itens do inventário se tornam inacessíveis (eles não podem ser negociados com os demais).<br/>Um traidor não pode negociar os recursos com os demais rebeldes, não pode manipular seu inventário, nem ser exibido em relatórios.<br/><br/>
+Método **POST**: localhost:8080/reporte
+```json
+{
+    "idAcusado" : 15
+}
+```
+
+- **Listar rebeldes**<br/>
+Retorna todos os rebeldes e traidores cadastrados no banco de dados<br/><br/>
+Método **GET**: localhost:8080/rebelde/all
+```json
+[
+    {
+        "id": 8,
+        "nome": "Rebelde Y",
+        "idade": 21,
+        "genero": "M",
+        "traidor": false,
+        "localizacao": {
+            //...
+        },
+        "inventario": {
+            "id": 9,
+            "itens": [
+                //...
+            ]
+        }
+    },
+    {
+        "id": 15,
+        "nome": "Rebelde Z",
+        "idade": 21,
+        "genero": "M",
+        "traidor": true,
+        "localizacao": {
+           //...
+        },
+        "inventario": {
+            "id": 16,
+            "itens": [
+               //...
+            ]
+        }
     }
 ]
 ```

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -31,6 +32,12 @@ import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "TB_REBELDE")
+
+/*
+ * Utilizando named query para realizar comandos personalizados no banco de
+ * dados
+ */
+@NamedQuery(name = "Rebelde.confirmarTraicao", query = "UPDATE Rebelde r SET r.traidor=true WHERE r.id=?1")
 public class Rebelde implements Serializable {
 
 	private static final long serialVersionUID = 1L;

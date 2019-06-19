@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.starwars.api.model.Item;
 import com.starwars.api.model.Rebelde;
 import com.starwars.api.model.Trade;
+import com.starwars.api.model.error.NullPointerException;
 import com.starwars.api.repository.IRebeldeRepository;
 
 /**
@@ -57,11 +58,14 @@ public class RebeldeServiceImpl implements IRebeldeService {
 		/*
 		 * Se o rebelde for um traidor ele não poderá realizar nenhuma ação
 		 */
-		if (rebelde.isTraidor()) {
-			return null;
+		if (rebelde == null) {
+			throw new NullPointerException("Yoda: Cadastrado não está este rebelde.");
+		} else if (rebelde.isTraidor()) {
+			throw new NullPointerException("Yoda: A resistência este rebelde traiu.");
 		} else {
 			return rebelde;
 		}
+
 	}
 
 	/*
