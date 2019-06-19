@@ -47,4 +47,9 @@ public interface IRebeldeService {
 	 * Remover itens
 	 */
 	List<Item> removerItens(List<Item> ofertante, List<Item> oferta);
+	
+	/*
+	 * Retorna uma lista com todos os rebeldes cadastrados
+	 */
+	List<Rebelde> findAll();
 }

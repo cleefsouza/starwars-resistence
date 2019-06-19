@@ -37,6 +37,7 @@ Método **POST**: localhost:8080/rebelde
     "nome" : "Rebelde Z",
     "idade" : 28,
     "genero" : "F",
+    "traidor" : false,
     "localizacao" : {
         "latitude" : "-7.1185908",
         "longitude" : "-30.8406991",
@@ -87,6 +88,7 @@ Método **GET**: localhost:8080/rebelde?id=**`id`**
     "nome": "Rebelde Z",
     "idade": 28,
     "genero": "F",
+    "traidor" : false,
     "localizacao": {
         "id": 14,
         "latitude": "-6.45678",

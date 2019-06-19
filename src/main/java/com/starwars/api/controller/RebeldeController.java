@@ -1,5 +1,7 @@
 package com.starwars.api.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +55,10 @@ public class RebeldeController {
 	@PostMapping("/trade")
 	public void realizarTrade(@RequestBody Trade[] trade) {
 		rebService.realizarTrade(trade[0], trade[1]);
+	}
+	
+	@GetMapping("/all")
+	public List<Rebelde> getAll() {
+		return rebService.findAll();
 	}
 }

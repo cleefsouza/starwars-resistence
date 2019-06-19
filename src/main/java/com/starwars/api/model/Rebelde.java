@@ -49,15 +49,32 @@ public class Rebelde implements Serializable {
 	@Column(name = "REB_GENERO", nullable = false)
 	private char genero;
 
+	@Column(name = "REB_TRAIDOR", nullable = false)
+	private boolean traidor;
+
+	/**
+	 * @return the traidor
+	 */
+	public boolean isTraidor() {
+		return traidor;
+	}
+
 	@OneToOne
 	@Cascade(CascadeType.PERSIST)
 	@JoinColumn(name = "REB_ID_LOCALIZACAO", nullable = false)
 	private Localizacao localizacao;
-	
+
 	@OneToOne
 	@Cascade(CascadeType.PERSIST)
 	@JoinColumn(name = "REB_ID_INVENTARIO", nullable = false)
 	private Inventario inventario;
+
+	/**
+	 * @param traidor the traidor to set
+	 */
+	public void setTraidor(boolean traidor) {
+		this.traidor = traidor;
+	}
 
 	/**
 	 * @return the inventario

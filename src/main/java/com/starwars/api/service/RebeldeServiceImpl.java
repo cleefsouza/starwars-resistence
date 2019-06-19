@@ -48,11 +48,20 @@ public class RebeldeServiceImpl implements IRebeldeService {
 	}
 
 	/*
-	 * Método para buscar um rebelde através do seu id
+	 * Método para buscar um rebelde através do seu id, onde o mesmo poderá ver
+	 * todas as suas informações incluindo inventário e itens
 	 */
 	@Override
 	public Rebelde findById(long id) {
-		return rebRepository.findById(id);
+		Rebelde rebelde = rebRepository.findById(id);
+		/*
+		 * Se o rebelde for um traidor ele não poderá realizar nenhuma ação
+		 */
+		if (rebelde.isTraidor()) {
+			return null;
+		} else {
+			return rebelde;
+		}
 	}
 
 	/*
@@ -225,5 +234,13 @@ public class RebeldeServiceImpl implements IRebeldeService {
 			}
 		}
 		return ofertante;
+	}
+
+	/*
+	 * Retorna uma lista com todos os rebeldes cadastrados
+	 */
+	@Override
+	public List<Rebelde> findAll() {
+		return rebRepository.findAll();
 	}
 }
