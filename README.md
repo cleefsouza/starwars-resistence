@@ -126,11 +126,9 @@ Método **GET**: localhost:8080/rebelde?id=**`id`**
 ```
 
 - **Negociar itens**<br/>
-Os rebeldes poderão negociar itens entre eles. Para isso, eles devem respeitar a tabela de preços citada acima, onde o valor do item é descrito em termo de pontos. Ambos os lados deverão oferecer a mesma quantidade de pontos. Por exemplo, 1 munição e 1 comida (1 x 3 + 1 x 1) valem 2 águas (2 x 2) ou 4 comidas (4 x 1). <br/>
-Caso os *nomes dos itens estejam diferente da tebela de preços*, a *quantidade de itens seja maior que o inventário do rebelde* ou *a pontuação não bata* o trade será **CANCELADO**
-
-**OBS**: A negociação em si não será armazenada, mas os itens deverão ser transferidos de um rebelde a outro.
-
+Os rebeldes poderão negociar itens entre eles. Para isso, eles devem respeitar a tabela de preços citada acima, onde o valor do item é descrito em termo de pontos.<br/>Ambos os lados deverão oferecer a mesma quantidade de pontos. Por exemplo, 1 munição e 1 comida (1 x 3 + 1 x 1) valem 2 águas (2 x 2) ou 4 comidas (4 x 1).<br/><br/>
+Caso os *nomes dos itens estejam diferente da tebela de preços*, a *quantidade de itens seja maior que o inventário do rebelde* ou *a pontuação não bata* o trade será **CANCELADO**<br/><br/>
+**OBS**: A negociação em si não será armazenada, mas os itens deverão ser transferidos de um rebelde a outro.<br/>
 Método **POST**: localhost:8080/rebelde/trade
 ```json
 [
